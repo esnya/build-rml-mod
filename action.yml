@@ -43,11 +43,16 @@ runs:
       shell: pwsh
       run: steamcmd +force_install_dir ${{ inputs.project }}/Resonite +login ${{ inputs.steam-login }} +app_update ${{ inputs.app-id }} validate +quit
 
-    - name: Install ResoniteModLoader
+    - name: Prepare directories
       shell: pwsh
       run: |
         mkdir -p ${{ inputs.project }}/Resonite/Libraries/
         mkdir -p ${{ inputs.project }}/Resonite/rml_libs/
+      continue-on-error: true
+
+    - name: Install ResoniteModLoader
+      shell: pwsh
+      run: |
         Invoke-WebRequest -Uri https://github.com/resonite-modding-group/ResoniteModLoader/releases/latest/download/ResoniteModLoader.dll -OutFile ${{ inputs.project }}/Resonite/Libraries/ResoniteModLoader.dll
         Invoke-WebRequest -Uri https://github.com/resonite-modding-group/ResoniteModLoader/releases/latest/download/0Harmony.dll -OutFile ${{ inputs.project }}/Resonite/rml_libs/0Harmony.dll
 
