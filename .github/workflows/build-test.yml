@@ -1,0 +1,28 @@
+name: Test Action
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Checkout action
+        uses: actions/checkout@v4
+
+      - name: Checkout mod
+        uses: actions/checkout@v4
+        with:
+          repository: 'esnya/EsnyaResoniteModTemplate'
+          path: ${{ github.workspace }}/TestProject
+
+      - name: Build Mod for ResoniteModLoader
+        uses: ./
+        with:
+          project: ${{ github.workspace }}/TestProject/EsnyaResoniteModTemplate
+          steam-login: ${{ secrets.STEAMLOGIN }}
+          app-id: '2519830'
