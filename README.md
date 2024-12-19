@@ -10,6 +10,12 @@ This GitHub Action builds a mod for ResoniteModLoader. It performs:
 - Caches the build environment.
 - Builds the mod.
 
+## License
+
+This project/action is licensed under the [MIT License](./LICENSE).
+
+
+
 ## Inputs
 
 | **Input**       | **Description**                                                                 | **Default**                                                | **Required** |
